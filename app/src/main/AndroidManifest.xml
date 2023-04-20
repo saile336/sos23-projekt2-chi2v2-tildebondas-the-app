@@ -10,6 +10,7 @@
         android:theme="@style/Theme.SoSProjekt">
         <activity
             android:name=".MainActivity2"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

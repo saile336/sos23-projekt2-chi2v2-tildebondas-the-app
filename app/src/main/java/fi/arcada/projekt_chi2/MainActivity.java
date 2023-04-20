@@ -48,10 +48,15 @@ public class MainActivity extends AppCompatActivity {
         prefEditor = sharedpref.edit();
 
 
-        textViewCol1.setText("Your data");
+     /*   textViewCol1.setText("Your data");
         textViewCol2.setText("Your data");
         textViewRow1.setText("Your data");
         textViewRow2.setText("Your data");
+*/
+        textViewCol1.setText(sharedpref.getString("text1", "Your data"));
+        textViewCol2.setText(sharedpref.getString("text2", "Your data"));
+        textViewRow1.setText(sharedpref.getString("text3", "Your data"));
+        textViewRow2.setText(sharedpref.getString("text4", "Your data"));
 
         total1.setText("0");
         total2.setText("0");
