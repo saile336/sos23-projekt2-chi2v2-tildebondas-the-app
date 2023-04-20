@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         prefEditor = sharedpref.edit();
 
 
-     /*   textViewCol1.setText("Your data");
+     /**   textViewCol1.setText("Your data");
         textViewCol2.setText("Your data");
         textViewRow1.setText("Your data");
         textViewRow2.setText("Your data");
@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
         textViewRow1.setText(sharedpref.getString("text3", "Your data"));
         textViewRow2.setText(sharedpref.getString("text4", "Your data"));
 
-        total1.setText("0");
-        total2.setText("0");
+        totals();
 
 
     }
@@ -79,10 +78,16 @@ public class MainActivity extends AppCompatActivity {
         if (view.getId() == R.id.button3) val3++;
         if (view.getId() == R.id.button4) val4++;
 
+        prefEditor.putInt("val1", val1);
+        prefEditor.putInt("val2", val2);
+        prefEditor.putInt("val3", val3);
+        prefEditor.putInt("val4", val4);
+        prefEditor.apply();
+
         t2 = val1 + val3;
         t1 = val2 + val4;
 
-/*
+/**
 
         if (t2 == 0)proc1 = 0;
         else if (val3 == 0 && val1 > 1) proc1 = 100;
@@ -162,6 +167,14 @@ public class MainActivity extends AppCompatActivity {
         val4 = 0;
         t1 = 0;
         t2 = 0;
+
+        prefEditor.putInt("val1", val1);
+        prefEditor.putInt("val2", val2);
+        prefEditor.putInt("val3", val3);
+        prefEditor.putInt("val4", val4);
+        prefEditor.apply();
+
+
   //      proc2 = 0;
   //      proc1 = 0;
         calculate();
