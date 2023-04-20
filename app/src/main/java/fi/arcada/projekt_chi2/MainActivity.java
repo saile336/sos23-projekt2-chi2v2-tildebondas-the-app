@@ -2,7 +2,10 @@ package fi.arcada.projekt_chi2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,11 +13,14 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     // Deklarera 4 Button-objekt
-    Button btn1, btn2, btn3, btn4, reset;
+    Button btn1, btn2, btn3, btn4, reset, settings;
     // Deklarera 4 heltalsvariabler för knapparnas värden
     int val1, val2, val3, val4, t1, t2, proc1, proc2 = 0;
 
     TextView textViewCol1, textViewCol2, textViewRow1, textViewRow2, total1, total2, procent1, procent2, procentData;
+
+    SharedPreferences sharedpref;
+    SharedPreferences.Editor prefEditor;
 
 
     @Override
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         btn4 = findViewById(R.id.button4);
 
         reset = findViewById(R.id.reset);
+        settings = findViewById(R.id.settings);
 
         textViewCol1 = findViewById(R.id.textViewCol1);
         textViewCol2 = findViewById(R.id.textViewCol2);
@@ -36,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
         textViewRow2 = findViewById(R.id.textViewRow2);
         total1 = findViewById(R.id.total1);
         total2 = findViewById(R.id.total2);
+
+        sharedpref = PreferenceManager.getDefaultSharedPreferences(this);
+        prefEditor = sharedpref.edit();
+
 
         textViewCol1.setText("Your data");
         textViewCol2.setText("Your data");
@@ -78,6 +89,16 @@ public class MainActivity extends AppCompatActivity {
         else proc2 = (val2/t1)*100;
 
         */
+
+        if (val1 == 0 && val3 == 0){proc1 = 0;}
+        if (val1 > 1 && val3 == 0){proc1 = 100;}
+        if (val1 == 0 && val3 > 1){proc1 = 0;}
+        if (val1 > 1 && val3 > 1){proc1 = (val1/t2)*100;}
+
+        if (val2 == 0 && val4 == 0){proc2 = 0;}
+        if (val2 > 1 && val4 == 0){proc2 = 100;}
+        if (val2 == 0 && val4 > 1){proc2 = 0;}
+        if (val2 > 1 && val4 > 1){proc2 = (val2/t1)*100;}
 
 
 
@@ -124,8 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
         total1.setText(String.valueOf(t1));
         total2.setText(String.valueOf(t2));
-     //   procent1.setText(String.valueOf(proc1));
-     //   procent2.setText(String.valueOf(proc2));
+
+ //       procent1.setText(String.valueOf(proc1));
+ //       procent2.setText(String.valueOf(proc2));
     }
 
     public void setReset(View view){
@@ -140,6 +162,14 @@ public class MainActivity extends AppCompatActivity {
         calculate();
 
         totals();
+
+    }
+
+    public void setSettings(View view){
+
+        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        // start the activity connect to the specified class
+        startActivity(intent);
 
     }
 
