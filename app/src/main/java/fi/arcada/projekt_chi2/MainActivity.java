@@ -58,6 +58,19 @@ public class MainActivity extends AppCompatActivity {
         textViewRow1.setText(sharedpref.getString("text3", "Your data"));
         textViewRow2.setText(sharedpref.getString("text4", "Your data"));
 
+
+        val1 = sharedpref.getInt("val1", 0);
+        val2 = sharedpref.getInt("val2", 0);
+        val3 = sharedpref.getInt("val3", 0);
+        val4 = sharedpref.getInt("val4", 0);
+
+        btn1.setText(String.valueOf(val1));
+        btn2.setText(String.valueOf(val2));
+        btn3.setText(String.valueOf(val3));
+        btn4.setText(String.valueOf(val4));
+
+
+
         totals();
 
 
@@ -84,8 +97,7 @@ public class MainActivity extends AppCompatActivity {
         prefEditor.putInt("val4", val4);
         prefEditor.apply();
 
-        t2 = val1 + val3;
-        t1 = val2 + val4;
+
 
 /**
 
@@ -152,6 +164,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void totals(){
+
+        t2 = val1 + val3;
+        t1 = val2 + val4;
 
         total1.setText(String.valueOf(t1));
         total2.setText(String.valueOf(t2));
