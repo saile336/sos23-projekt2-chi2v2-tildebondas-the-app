@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     // Deklarera 4 heltalsvariabler för knapparnas värden
     int val1, val2, val3, val4, t1, t2, proc1, proc2 = 0;
 
-    TextView textViewCol1, textViewCol2, textViewRow1, textViewRow2, total1, total2, procent1, procent2, procentData;
+    TextView textViewCol1, textViewCol2, textViewRow1, textViewRow2, total1, total2, procent1, procent2, procentData, textChi;
 
     SharedPreferences sharedpref;
     SharedPreferences.Editor prefEditor;
@@ -41,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         textViewCol2 = findViewById(R.id.textViewCol2);
         textViewRow1 = findViewById(R.id.textViewRow1);
         textViewRow2 = findViewById(R.id.textViewRow2);
+
+
+        textChi = findViewById(R.id.textChi);
+
+
         total1 = findViewById(R.id.total1);
         total2 = findViewById(R.id.total2);
 
@@ -146,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
         // Mata in värdena i Chi-2-uträkningen och ta emot resultatet
         // i en Double-variabel
         double chi2 = Significance.chiSquared(val1, val2, val3, val4);
+
+        textChi.setText("Chi-2 result is: " + String.valueOf(chi2));
 
         // Mata in chi2-resultatet i getP() och ta emot p-värdet
         double pValue = Significance.getP(chi2);

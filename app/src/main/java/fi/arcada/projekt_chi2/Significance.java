@@ -5,10 +5,38 @@ public class Significance {
     /**
      * Metod som räknar ut Chi-två på basis av fyra observerade värden (o1 - o4).
      */
-    public static double chiSquared(int o1, int o2, int o3, int o4) {
+    public static double chiSquared(int val1, int val2, int val3, int val4) {
 
         // heltalsvariabler tänkta att få de förväntade värdena
-        int e1, e2, e3, e4;
+
+
+
+        int e1, e2, e3, e4, e12, d12, c12, e10, e8;
+
+        e12 = (val1 + val2)+(val3+val4);
+        d12 = val2 + val4;
+        c12 = val1 + val3;
+        e10 = val3 + val4;
+        e8 = val1 + val2;
+
+        e1 = e8*c12/e12;
+        e2 = e8*d12/e12;
+        e3 = e10*c12/e12;
+        e4 = d12*e10/e12;
+
+        double chi1, chi2, chi3,chi4;
+
+        chi1 = Math.pow(val1 - e1, 2)/e1;
+        chi2 = Math.pow(val2 - e2, 2)/e2;
+        chi3 = Math.pow(val2 - e3, 2)/e3;
+        chi4 = Math.pow(val2 - e4, 2)/e4;
+
+        double chiResult = chi1 + chi2 + chi3 + chi4;
+
+
+
+
+
 
         /**
          *  Implementera din egen Chi-två-uträkning här!
@@ -23,7 +51,7 @@ public class Significance {
          *
          * */
 
-        return 0.0;
+        return chiResult;
     }
 
 
