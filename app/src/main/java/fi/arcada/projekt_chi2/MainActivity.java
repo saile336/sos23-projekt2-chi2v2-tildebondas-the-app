@@ -103,20 +103,6 @@ public class MainActivity extends AppCompatActivity {
         prefEditor.apply();
 
 
-
-/**
-
-        if (t2 == 0)proc1 = 0;
-        else if (val3 == 0 && val1 > 1) proc1 = 100;
-        else proc1 = (val1/t2)*100;
-
-
-        if (t1 == 0) proc2 = 0;
-        else if (val4 == 0 && val2 > 1) proc2 = 100;
-        else proc2 = (val2/t1)*100;
-
-        */
-
         if (val1 == 0 && val3 == 0){proc1 = 0;}
         if (val1 > 1 && val3 == 0){proc1 = 100;}
         if (val1 == 0 && val3 > 1){proc1 = 0;}
@@ -140,19 +126,24 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Metod som uppdaterar layouten och räknar ut själva analysen.
      */
-    public void calculate() {
 
-        // Uppdatera knapparna med de nuvarande värdena
+    // Uppdatera knapparna med de nuvarande värdena
+    public void updateText() {
         btn1.setText(String.valueOf(val1));
         btn2.setText(String.valueOf(val2));
         btn3.setText(String.valueOf(val3));
         btn4.setText(String.valueOf(val4));
+    }
+
+    public void calculate() {
+
+        updateText();
 
         // Mata in värdena i Chi-2-uträkningen och ta emot resultatet
         // i en Double-variabel
         double chi2 = Significance.chiSquared(val1, val2, val3, val4);
 
-        textChi.setText("Chi-2 result is: " + String.valueOf(chi2));
+        textChi.setText(String.format("Chi-2 result is: %.2f", chi2));
 
         // Mata in chi2-resultatet i getP() och ta emot p-värdet
         double pValue = Significance.getP(chi2);
@@ -178,8 +169,8 @@ public class MainActivity extends AppCompatActivity {
         total1.setText(String.valueOf(t1));
         total2.setText(String.valueOf(t2));
 
- //       procent1.setText(String.valueOf(proc1));
- //       procent2.setText(String.valueOf(proc2));
+        procent1.setText(String.valueOf(proc1));
+        procent2.setText(String.valueOf(proc2));
     }
 
     public void setReset(View view){
@@ -197,9 +188,9 @@ public class MainActivity extends AppCompatActivity {
         prefEditor.apply();
 
 
-  //      proc2 = 0;
-  //      proc1 = 0;
-        calculate();
+        proc2 = 0;
+        proc1 = 0;
+        updateText();
 
         totals();
 
