@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     // Deklarera 4 Button-objekt
     Button btn1, btn2, btn3, btn4, reset, settings;
     // Deklarera 4 heltalsvariabler för knapparnas värden
-    int val1, val2, val3, val4, t1, t2, proc1, proc2 = 0;
+    int val1, val2, val3, val4, t1, t2 = 0;
+    double proc1, proc2 = 0;
 
     TextView textViewCol1, textViewCol2, textViewRow1, textViewRow2, total1, total2, procent1, procent2, procentData, textChi;
 
@@ -103,20 +104,18 @@ public class MainActivity extends AppCompatActivity {
         prefEditor.apply();
 
 
-        if (val1 == 0 && val3 == 0){proc1 = 0;}
-        if (val1 > 1 && val3 == 0){proc1 = 100;}
-        if (val1 == 0 && val3 > 1){proc1 = 0;}
-        if (val1 > 1 && val3 > 1){proc1 = (val1/t2)*100;}
-
-        if (val2 == 0 && val4 == 0){proc2 = 0;}
-        if (val2 > 1 && val4 == 0){proc2 = 100;}
-        if (val2 == 0 && val4 > 1){proc2 = 0;}
-        if (val2 > 1 && val4 > 1){proc2 = (val2/t1)*100;}
-
-
 
         totals();
 
+        if (val1 == 0 && val3 == 0){proc1 = 0;}
+        else if (val1 > 1 && val3 == 0){proc1 = 100;}
+        else if (val1 == 0 && val3 > 1){proc1 = 0;}
+        else if (val1 > 1 && val3 > 1){proc1 = (val1/t2)*100;}
+
+        if (val2 == 0 && val4 == 0){proc2 = 0;}
+        else if (val2 > 1 && val4 == 0){proc2 = 100;}
+        else if (val2 == 0 && val4 > 1){proc2 = 0;}
+        else if (val2 > 1 && val4 > 1){proc2 = (val2/t1)*100;}
 
 
         // Slutligen, kör metoden som ska räkna ut allt!
@@ -166,11 +165,12 @@ public class MainActivity extends AppCompatActivity {
         t2 = val1 + val3;
         t1 = val2 + val4;
 
+
         total1.setText(String.valueOf(t1));
         total2.setText(String.valueOf(t2));
 
-        procent1.setText(String.valueOf(proc1));
-        procent2.setText(String.valueOf(proc2));
+        //procent1.setText(String.valueOf(proc1));
+        //procent2.setText(String.valueOf(proc2));
     }
 
     public void setReset(View view){

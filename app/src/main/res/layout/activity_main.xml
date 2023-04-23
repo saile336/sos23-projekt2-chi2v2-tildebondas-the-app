@@ -130,14 +130,12 @@
                 android:id="@+id/procent1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="procent goes here"
                 android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/procent2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="procent goes here"
                 android:textAlignment="center" />
         </TableRow>
 
