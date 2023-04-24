@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
     Button btn1, btn2, btn3, btn4, reset, settings;
     // Deklarera 4 heltalsvariabler för knapparnas värden
     int val1, val2, val3, val4, t1, t2 = 0;
-    double proc1, proc2 = 0;
+    double proc1, proc2, chi2, pValue = 0;
 
-    TextView textViewCol1, textViewCol2, textViewRow1, textViewRow2, total1, total2, procent1, procent2, procentData, textChi;
+    TextView textViewCol1, textViewCol2, textViewRow1, textViewRow2, total1, total2, procent1, procent2, procentData, textChi, textSig, textP;
 
     SharedPreferences sharedpref;
     SharedPreferences.Editor prefEditor;
@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         textChi = findViewById(R.id.textChi);
+        textSig = findViewById(R.id.textSig);
+        textP = findViewById(R.id.textP);
+
 
 
         total1 = findViewById(R.id.total1);
@@ -140,12 +143,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Mata in värdena i Chi-2-uträkningen och ta emot resultatet
         // i en Double-variabel
-        double chi2 = Significance.chiSquared(val1, val2, val3, val4);
+        chi2 = Significance.chiSquared(val1, val2, val3, val4);
 
         textChi.setText(String.format("Chi-2 result is: %.2f", chi2));
 
         // Mata in chi2-resultatet i getP() och ta emot p-värdet
-        double pValue = Significance.getP(chi2);
+        pValue = Significance.getP(chi2);
+
+        textP.setText(String.format("P value is: %.3f", pValue));
+
+        textSig.setText("Significance: " + sharedpref.getString("sig", "0.05"));
 
         /**
          *  - Visa chi2 och pValue åt användaren på ett bra och tydligt sätt!
@@ -190,6 +197,9 @@ public class MainActivity extends AppCompatActivity {
 
         proc2 = 0;
         proc1 = 0;
+        textChi.setText("");
+        textP.setText("");
+        textSig.setText("");
         updateText();
 
         totals();

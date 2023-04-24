@@ -24,12 +24,12 @@ public class Significance {
         e3 = e10*c12/e12;
         e4 = d12*e10/e12;
 
-        double chi1, chi2, chi3,chi4;
+        double chi1, chi2, chi3, chi4;
 
         chi1 = Math.pow(val1 - e1, 2)/e1;
         chi2 = Math.pow(val2 - e2, 2)/e2;
-        chi3 = Math.pow(val2 - e3, 2)/e3;
-        chi4 = Math.pow(val2 - e4, 2)/e4;
+        chi3 = Math.pow(val3 - e3, 2)/e3;
+        chi4 = Math.pow(val4 - e4, 2)/e4;
 
         double chiResult = chi1 + chi2 + chi3 + chi4;
 

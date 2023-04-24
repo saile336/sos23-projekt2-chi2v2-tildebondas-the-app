@@ -39,7 +39,7 @@ public class MainActivity2 extends AppCompatActivity {
         text2.setText(sharedpref.getString("text2", "Your data"));
         text3.setText(sharedpref.getString("text3", "Your data"));
         text4.setText(sharedpref.getString("text4", "Your data"));
-        sig.setText(sharedpref.getString("sig", "Your data"));
+        sig.setText(sharedpref.getString("sig", "0.05"));
     }
 
 
