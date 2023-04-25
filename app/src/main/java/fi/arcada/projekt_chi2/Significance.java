@@ -11,7 +11,7 @@ public class Significance {
 
 
 
-        double e1, e2, e3, e4, e12, d12, c12, e10, e8;
+        double e1, e2, e3, e4;
 
         double up, down, left, right, tots;
         
@@ -29,10 +29,7 @@ public class Significance {
         e3 = (down * left)/tots;
         e4 = (down * right)/tots;
 
-        System.out.println(up);
-        System.out.println(down);
-        System.out.println(left);
-        System.out.println(right);
+
         
         
 

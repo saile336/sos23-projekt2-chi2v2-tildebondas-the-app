@@ -15,10 +15,10 @@ public class MainActivity extends AppCompatActivity {
     // Deklarera 4 Button-objekt
     Button btn1, btn2, btn3, btn4, reset, settings;
     // Deklarera 4 heltalsvariabler för knapparnas värden
-    int val1, val2, val3, val4, t1, t2 = 0;
-    double proc1, proc2, chi2, pValue = 0;
+    int val1, val2, val3, val4 = 0;
+    double proc1, proc2, chi2, pValue, t1, t2, psig, sig = 0;
 
-    TextView textViewCol1, textViewCol2, textViewRow1, textViewRow2, total1, total2, procent1, procent2, procentData, textChi, textSig, textP;
+    TextView textViewCol1, textViewCol2, textViewRow1, textViewRow2, total1, total2, procent1, procent2, procentData, textChi, textSig, textP, signifiganceText;
 
     SharedPreferences sharedpref;
     SharedPreferences.Editor prefEditor;
@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         textViewRow1 = findViewById(R.id.textViewRow1);
         textViewRow2 = findViewById(R.id.textViewRow2);
         procentData = findViewById(R.id.procentData);
+        procent1 = findViewById(R.id.procent1);
+        procent2 = findViewById(R.id.procent2);
+        signifiganceText = findViewById(R.id.signifiganceText);
 
 
         textChi = findViewById(R.id.textChi);
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         textViewRow1.setText(sharedpref.getString("text3", "Your data"));
         textViewRow2.setText(sharedpref.getString("text4", "Your data"));
         procentData.setText(sharedpref.getString("text3", "Your %") + "%");
+        signifiganceText.setText("");
 
 
         val1 = sharedpref.getInt("val1", 0);
@@ -110,21 +114,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
         totals();
 
-        if (val1 == 0 && val3 == 0){proc1 = 0;}
-        else if (val1 > 1 && val3 == 0){proc1 = 100;}
-        else if (val1 == 0 && val3 > 1){proc1 = 0;}
-        else if (val1 > 1 && val3 > 1){proc1 = (val1/t2)*100;}
 
-        if (val2 == 0 && val4 == 0){proc2 = 0;}
-        else if (val2 > 1 && val4 == 0){proc2 = 100;}
-        else if (val2 == 0 && val4 > 1){proc2 = 0;}
-        else if (val2 > 1 && val4 > 1){proc2 = (val2/t1)*100;}
+
 
 
         // Slutligen, kör metoden som ska räkna ut allt!
         calculate();
+        sig();
     }
 
     /**
@@ -137,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
         btn2.setText(String.valueOf(val2));
         btn3.setText(String.valueOf(val3));
         btn4.setText(String.valueOf(val4));
+
+
     }
 
     public void calculate() {
@@ -156,6 +158,10 @@ public class MainActivity extends AppCompatActivity {
 
         textSig.setText("Significance: " + sharedpref.getString("sig", "0.05"));
 
+
+
+        //100-(100*p)
+
         /**
          *  - Visa chi2 och pValue åt användaren på ett bra och tydligt sätt!
          *
@@ -168,7 +174,23 @@ public class MainActivity extends AppCompatActivity {
          */
 
     }
+    public void sig(){
+     psig = 100-(pValue*100);
 
+        String sigStr = sharedpref.getString("sig", "0.05");
+        sigStr = sigStr.replace(",", ".");
+        sig = Double.parseDouble(sigStr);
+
+
+        if (sig > pValue){
+            signifiganceText.setText("Your data shows that it's a " + psig + "% of correlation");
+        }
+
+        if(sig < pValue){
+            signifiganceText.setText("Your data shows no correlation");
+        }
+
+    }
     public void totals(){
 
         t2 = val1 + val3;
@@ -178,9 +200,20 @@ public class MainActivity extends AppCompatActivity {
         total1.setText(String.valueOf(t1));
         total2.setText(String.valueOf(t2));
 
-        //procent1.setText(String.valueOf(proc1));
-        //procent2.setText(String.valueOf(proc2));
+        if (t2 > 0) proc1 = (val1/t2)*100;
+        if (t1 > 0) proc2 = (val2/t1)*100;
+        System.out.println(proc1);
+
+
+        procent1.setText(String.format("%.2f %%",
+                proc1));
+        procent2.setText(String.format("%.2f %%",
+                proc2));
+
+
     }
+
+
 
     public void setReset(View view){
         val1 = 0;
