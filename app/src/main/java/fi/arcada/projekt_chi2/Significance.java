@@ -11,18 +11,45 @@ public class Significance {
 
 
 
-        int e1, e2, e3, e4, e12, d12, c12, e10, e8;
+        double e1, e2, e3, e4, e12, d12, c12, e10, e8;
 
+        double up, down, left, right, tots;
+        
+        //net = North East total, et = East total, st South total and swt =South West total
+        
+        up = val1 + val2;
+        down = val3 + val4;
+        right = val2 + val4;
+        left = val1 + val3;
+        
+        tots = up + down;
+        
+        e1 = (up * left)/tots;
+        e2 = (up * right)/tots;
+        e3 = (down * left)/tots;
+        e4 = (down * right)/tots;
+
+        System.out.println(up);
+        System.out.println(down);
+        System.out.println(left);
+        System.out.println(right);
+        
+        
+
+        
+        /**
+        
         e12 = (val1 + val2)+(val3+val4);
         d12 = val2 + val4;
         c12 = val1 + val3;
         e10 = val3 + val4;
         e8 = val1 + val2;
 
-        e1 = e8*c12/e12;
-        e2 = e8*d12/e12;
-        e3 = e10*c12/e12;
-        e4 = d12*e10/e12;
+        e1 = e8+c12/e12;
+        e2 = e8+d12/e12;
+        e3 = e10+c12/e12;
+        e4 = d12+e10/e12;
+         */
 
         double chi1, chi2, chi3, chi4;
 
