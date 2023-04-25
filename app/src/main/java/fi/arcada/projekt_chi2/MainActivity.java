@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         textViewCol2 = findViewById(R.id.textViewCol2);
         textViewRow1 = findViewById(R.id.textViewRow1);
         textViewRow2 = findViewById(R.id.textViewRow2);
+        procentData = findViewById(R.id.procentData);
 
 
         textChi = findViewById(R.id.textChi);
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         textViewCol2.setText(sharedpref.getString("text2", "Your data"));
         textViewRow1.setText(sharedpref.getString("text3", "Your data"));
         textViewRow2.setText(sharedpref.getString("text4", "Your data"));
+        procentData.setText(sharedpref.getString("text3", "Your %") + "%");
 
 
         val1 = sharedpref.getInt("val1", 0);
